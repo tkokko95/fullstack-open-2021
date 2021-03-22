@@ -9,7 +9,7 @@ const Content = props => {
         <ul>
             {
                 props.parts.map(part =>
-                    <Part part={part.name} exercises={part.exercises} key={part.name} />
+                    <Part part={part.name} exercises={part.exercises} key={part.id} />
                 )
             }
         </ul>
@@ -38,6 +38,6 @@ export const Course = props => {
         <Header name={props.course.name} />
         <Content parts={props.course.parts} />
         <Total total={props.course.total} />
-    </div>
-)
+        </div>
+    )
 }

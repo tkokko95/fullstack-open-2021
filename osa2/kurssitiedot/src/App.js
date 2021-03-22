@@ -51,10 +51,9 @@ const App = () => {
         course.total = course.parts.reduce((acc, curr) => acc + curr.exercises, 0)
     )
 
-
     return (
         courses.map(course =>
-            <div>
+            <div key={course.id}>
                 <Course course={course} />
             </div>
         )
