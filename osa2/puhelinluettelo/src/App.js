@@ -1,14 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const App = () => {
-    const [persons, setPersons] = useState([{
-        name: 'Arto Hellas',
-        number: '0000-0000'
-        }
-    ])
+    const [personsList, setPersons] = useState([])
     const [newName, setNewName] = useState('')
     const [newNumber, setNewNumber] = useState('')
     const [newFilter, setNewFilter] = useState('')
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:3001/persons')
+            .then(response => setPersons(response.data))
+    }, [])
 
     const handleNameChange = (event) => {
         setNewName(event.target.value)
@@ -19,10 +22,10 @@ const App = () => {
     }
 
     const addPerson = (event) => {
-        if (persons.every(person => person.name !== newName)) {
+        if (personsList.every(person => person.name !== newName)) {
             event.preventDefault()
             const newPersonObj = {name: newName, number: newNumber}
-            setPersons(persons.concat(newPersonObj))
+            setPersons(personsList.concat(newPersonObj))
             setNewName('')
             setNewNumber('')
         }
@@ -36,8 +39,8 @@ const App = () => {
     }
 
     const personsToShow = newFilter !== ''
-        ? persons.filter(person => person.name.toLowerCase().includes(newFilter))
-        : persons
+        ? personsList.filter(person => person.name.toLowerCase().includes(newFilter))
+        : personsList
 
 
     return (
