@@ -1,3 +1,4 @@
+const { restart } = require('nodemon')
 const listHelper = require('../utils/list_helper')
 
 const listOfMultipleBlogs = [
@@ -81,7 +82,7 @@ describe('total likes', () => {
   })
 })
 
-describe('most likes', () => {
+describe('blog with most likes', () => {
 
   test('one blog', () => {
     const result = listHelper.favoriteBlog(listWithOneBlog)
@@ -91,5 +92,50 @@ describe('most likes', () => {
   test('multiple blogs', () => {
     const result = listHelper.favoriteBlog(listOfMultipleBlogs)
     expect(result).toEqual(listOfMultipleBlogs[2])
+  })
+})
+
+describe('author with most blogs', () => {
+
+  test('one blog', () => {
+    const result = listHelper.mostBlogs(listWithOneBlog)
+    expect(result).toEqual(
+      {
+        author: 'Edsger W. Dijkstra',
+        blogs: 1
+      }
+    )
+  })
+
+  test('multiple blogs', () => {
+    const result = listHelper.mostBlogs(listOfMultipleBlogs)
+    expect(result).toEqual(
+      {
+        author: 'Robert C. Martin',
+        blogs: 3
+      }
+    )
+  })
+})
+
+describe('author with most likes', () => {
+  test('one blog', () => {
+    const result = listHelper.mostLikes(listWithOneBlog)
+    expect(result).toEqual(
+      {
+      author: 'Edsger W. Dijkstra',
+      likes: 5
+      }
+    )
+  })
+
+  test('multiple blogs', () => {
+    const result = listHelper.mostLikes(listOfMultipleBlogs)
+    expect(result).toEqual(
+      {
+        author: 'Edsger W. Dijkstra',
+        likes: 17
+      }
+    )
   })
 })
