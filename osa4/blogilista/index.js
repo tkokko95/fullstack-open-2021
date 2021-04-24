@@ -4,13 +4,17 @@ const app = express()
 const cors = require('cors')
 const mongoose = require('mongoose')
 const blogsRouter = require('./controllers/blogs')
+const usersRouter = require('./controllers/users')
 const config = require('./utils/config')
+const middleware = require('./utils/middleware')
 
 mongoose.connect(config.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
 
 app.use(cors())
 app.use(express.json())
 app.use('/api/blogs', blogsRouter)
+app.use('/api/users', usersRouter)
+app.use(middleware.errorHandler)
 
 app.listen(config.PORT, () => {
   console.log(`Server running on port ${config.PORT}`)
