@@ -13,7 +13,7 @@ const App = () => {
     useEffect(() => {
         anecdoteService.getAll()
         .then(response => dispatch(initAnecdotes(response)))
-    }, [])
+    }, [dispatch])
 
     return (
         <div>
