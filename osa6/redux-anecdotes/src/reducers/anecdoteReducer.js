@@ -12,26 +12,36 @@ export const asObject = (anecdote) => {
 }
 
 export const voteAnecdote = id => {
-    return {
-        type: 'VOTE',
-        data: { id }
+    return async dispatch => {
+        const updatedAnecdote = await anecdoteService.like(id)
+        dispatch({
+            type: 'VOTE',
+            data: updatedAnecdote
+        })
+        
     }
-
 }
 
 export const addAnecdote = content => {
-    const action = {
-        type: 'ADD_ANECDOTE',
-        data: asObject(content)
+    return async dispatch => {
+        const newAnecdote = await anecdoteService.create(asObject(content))
+        dispatch ({
+            type: 'ADD_ANECDOTE',
+            data: newAnecdote
+        })
+
     }
-    return action
 
 }
 
-export const initAnecdotes = (anecdotes) => {
-    return {
-        type: 'INIT_ANECDOTES',
-        data: anecdotes
+export const initAnecdotes = () => {
+    return async dispatch => {
+        const anecdotes = await anecdoteService.getAll()
+        dispatch({
+            type: 'INIT_ANECDOTES',
+            data: anecdotes
+        }
+        )
     }
 
 }
