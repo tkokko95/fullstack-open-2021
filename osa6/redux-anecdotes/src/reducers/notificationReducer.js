@@ -9,17 +9,17 @@ export const showNotification = ((notification, delay) => {
                 type: 'REMOVE_NOTIFICATION'
             })
         }, delay * 1000)
-    }  
+    }
 })
 
 const notificationReducer = (state = '', action) => {
     switch (action.type) {
-        case 'SET_NOTIFICATION':
-            return action.data
-        case 'REMOVE_NOTIFICATION':
-            return ''
-        default:
-            return state
+    case 'SET_NOTIFICATION':
+        return action.data
+    case 'REMOVE_NOTIFICATION':
+        return ''
+    default:
+        return state
     }
 }
 

@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { voteAnecdote } from '../reducers/anecdoteReducer'
-import anecdoteService from '../services/anecdotes'
+import React from 'react'
 
 const AnecdoteList = () => {
 
@@ -11,7 +11,6 @@ const AnecdoteList = () => {
     const sortedAnecdotes = anecdotes.sort((a, b) => {
         return b.votes - a.votes
     })
-        
     const anecdotesToShow = filter === ''
         ? sortedAnecdotes
         : sortedAnecdotes.filter(anecdote => anecdote.content.toLowerCase().includes(filter.toLowerCase()))
@@ -30,7 +29,6 @@ const AnecdoteList = () => {
                 </div>
             )}
         </div>
-        
     )
 
 }

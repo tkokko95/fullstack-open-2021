@@ -27,11 +27,5 @@ const like = async id => {
         votes: newVotes
     })
     return response.data
-
-    
-
-
 }
-
-
 export default { getAll, create, like }
