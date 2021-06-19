@@ -1,15 +1,16 @@
-export const showNotification = (notification => {
-    return ({
-        type: 'SET_NOTIFICATION',
-        data: notification
-    })
+export const showNotification = ((notification, delay) => {
+    return async dispatch => {
+        dispatch ({
+            type: 'SET_NOTIFICATION',
+            data: notification
+        })
+        setTimeout(() => {
+            dispatch ({
+                type: 'REMOVE_NOTIFICATION'
+            })
+        }, delay * 1000)
+    }  
 })
-
-export const hideNotification = () => {
-    return ({
-        type: 'REMOVE_NOTIFICATION',
-    })
-}
 
 const notificationReducer = (state = '', action) => {
     switch (action.type) {
