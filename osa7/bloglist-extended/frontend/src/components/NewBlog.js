@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import { addBlog } from '../reducers/blogReducer'
 
-const NewBlog = (props) => {
+const NewBlog = () => {
     const [title, setTitle] = useState('')
     const [author, setAuthor] = useState('')
     const [url, setUrl] = useState('')
@@ -8,7 +9,7 @@ const NewBlog = (props) => {
     const handleNewBlog = (event) => {
         event.preventDefault()
 
-        props.createBlog({
+        addBlog({
             title, author, url
         })
 
