@@ -1,6 +1,6 @@
-  
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import useResource from './hooks/useResource'
 
 
 const useField = (type) => {
@@ -15,24 +15,6 @@ const useField = (type) => {
     value,
     onChange
   }
-}
-
-const useResource = (baseUrl) => {
-  const [resources, setResources] = useState([])
-
-  // ...
-
-  const create = (resource) => {
-    // ...
-  }
-
-  const service = {
-    create
-  }
-
-  return [
-    resources, service
-  ]
 }
 
 const App = () => {
@@ -52,6 +34,11 @@ const App = () => {
     event.preventDefault()
     personService.create({ name: name.value, number: number.value})
   }
+
+  useEffect(() => {
+      noteService.getAll()
+      personService.getAll()
+  }, [])
 
   return (
     <div>
