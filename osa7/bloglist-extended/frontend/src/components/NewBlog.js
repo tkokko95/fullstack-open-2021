@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { addBlog } from '../reducers/blogReducer'
+import { addBlog } from '../reducers/blogsReducer'
 
 const NewBlog = () => {
     const [title, setTitle] = useState('')

@@ -8,12 +8,14 @@ const BlogList = ({ user }) => {
 
     return (
         <div>
-            {blogs.sort(byLikes).map(blog => {
-                <Blog
-                    key={blog.id}
-                    blog={blog}
-                    own={user.username === blog.user.username}
-                />
+            {blogs.map(blog => {
+                return(
+                    <Blog
+                        key={blog.id}
+                        blog={blog}
+                        own={blog.user.id === user.id}
+                    />
+                )
             })}
         </div>
 

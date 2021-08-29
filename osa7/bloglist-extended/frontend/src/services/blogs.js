@@ -19,9 +19,9 @@ const getId = (id) => {
     return request.then(response => response.data)
 }
 
-const create = (blog) => {
-    const request = axios.post(baseUrl, blog, getConfig())
-    return request.then(response => response.data)
+const create = async (blog) => {
+    const response = axios.post(baseUrl, blog, getConfig())
+    return response.data
 }
 
 const update = (blog) => {

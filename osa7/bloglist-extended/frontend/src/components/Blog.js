@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
-import { likeBlog, removeBlog } from '../reducers/blogReducer'
+import { likeBlog, removeBlog } from '../reducers/blogsReducer'
 
 const Blog = ({ blog, own }) => {
     const [visible, setVisible] = useState(false)
     const dispatch = useDispatch()
+    console.log(blog)
 
     const blogStyle = {
         paddingTop: 10,
@@ -26,14 +27,15 @@ const Blog = ({ blog, own }) => {
                 <div>
                     <div>{blog.url}</div>
                     <div>likes {blog.likes}
-                        <button onClick={dispatch(likeBlog(blog.id))}>like</button>
+                        <button onClick={() => dispatch(likeBlog(blog.id))}>like</button>
                     </div>
                     <div>{blog.user.name}</div>
-                    {own && <button onClick={dispatch(removeBlog(blog.id))}>remove</button>}
+                    {own && <button onClick={() => dispatch(removeBlog(blog.id))}>remove</button>}
                 </div>
             )}
         </div>
     )
+
 }
 
 Blog.propTypes = {

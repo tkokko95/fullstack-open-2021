@@ -8,7 +8,7 @@ import NewBlog from './components/NewBlog'
 import loginService from './services/login'
 import storage from './utils/storage'
 import { showNotification } from './reducers/notificationReducer'
-import { fetchBlogs } from './reducers/blogReducer'
+import { fetchBlogs } from './reducers/blogsReducer'
 
 const App = () => {
     const [user, setUser] = useState(null)
