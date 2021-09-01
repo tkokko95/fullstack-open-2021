@@ -20,7 +20,9 @@ const getId = (id) => {
 }
 
 const create = async (blog) => {
-    const response = axios.post(baseUrl, blog, getConfig())
+    console.log(blog)
+    const response = await axios.post(baseUrl, blog, getConfig())
+    console.log(response)
     return response.data
 }
 
