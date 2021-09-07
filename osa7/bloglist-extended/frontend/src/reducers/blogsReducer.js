@@ -10,12 +10,12 @@ export const fetchBlogs = () => {
     }
 }
 
-export const addBlog = (newBlog) => {
+export const addBlog = newBlog => {
     return async dispatch => {
-        const response = await blogService.create(newBlog)
+        const createdBlog = await blogService.create(newBlog)
         dispatch({
             type: 'NEW_BLOG',
-            data: response.data
+            data: createdBlog
         })
     }
 }

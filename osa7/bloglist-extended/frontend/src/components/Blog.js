@@ -6,7 +6,6 @@ import { likeBlog, removeBlog } from '../reducers/blogsReducer'
 const Blog = ({ blog, own }) => {
     const [visible, setVisible] = useState(false)
     const dispatch = useDispatch()
-    console.log(blog)
 
     const blogStyle = {
         paddingTop: 10,
