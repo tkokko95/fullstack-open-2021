@@ -26,10 +26,10 @@ const Blog = ({ blog, own }) => {
                 <div>
                     <div>{blog.url}</div>
                     <div>likes {blog.likes}
-                        <button onClick={() => dispatch(likeBlog(blog.id))}>like</button>
+                        <button onClick={() => dispatch(likeBlog(blog))}>like</button>
                     </div>
                     <div>{blog.user.name}</div>
-                    {own && <button onClick={() => dispatch(removeBlog(blog.id))}>remove</button>}
+                    {own && <button onClick={() => dispatch(removeBlog(blog))}>remove</button>}
                 </div>
             )}
         </div>
