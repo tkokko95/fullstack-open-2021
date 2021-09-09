@@ -1,16 +1,21 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+// eslint-disable-next-line no-unused-vars
+import { BrowserRouter as Router, Switch, Route, Link, useParams, useHistory } from 'react-router-dom'
 import BlogList from './components/BlogList'
 import Notification from './components/Notification'
 import Togglable from './components/Togglable'
 import NewBlog from './components/NewBlog'
 import LoginForm from './components/LoginForm'
+import UserList from './components/UserList'
+import UserInfo from './components/UserInfo'
+import BlogInfo from './components/BlogInfo'
+import Navbar from './components/Navbar'
 
 import { fetchBlogs } from './reducers/blogsReducer'
-import { logout } from './reducers/loginReducer'
+import { getUsers } from './reducers/usersReducer'
 
 const App = () => {
-
 
     const dispatch = useDispatch()
     const user = useSelector(store => store.login)
@@ -19,12 +24,8 @@ const App = () => {
 
     useEffect(() => {
         dispatch(fetchBlogs())
+        dispatch(getUsers())
     }, [])
-
-    const handleLogout = () => {
-        window.localStorage.removeItem('loggedBlogAppUser')
-        dispatch(logout())
-    }
 
 
     if (!user) {
@@ -38,18 +39,31 @@ const App = () => {
 
     return (
         <div>
-            <h2>blogs</h2>
-
             <Notification />
-
             <p>
-                {user.name} logged in <button onClick={handleLogout}>logout</button>
+                {user.name} logged in
             </p>
 
-            <Togglable buttonLabel='create new blog' ref={blogFormRef}>
-                <NewBlog />
-            </Togglable>
-            <BlogList user={user} />
+            <Router>
+                <Navbar />
+                <Switch>
+                    <Route exact path='/users'>
+                        <UserList />
+                    </Route>
+                    <Route exact path='/users/:id'>
+                        <UserInfo />
+                    </Route>
+                    <Route exact path='/blogs/:id'>
+                        <BlogInfo />
+                    </Route>
+                    <Route exact path='/blogs'>
+                        <Togglable buttonLabel='create new blog' ref={blogFormRef}>
+                            <NewBlog />
+                        </Togglable>
+                        <BlogList user={user} />
+                    </Route>
+                </Switch>
+            </Router>
         </div>
     )
 }
