@@ -4,11 +4,12 @@ import { useSelector } from 'react-redux'
 
 const BlogList = ({ user }) => {
     const blogs = useSelector(state => state.blogs)
-    //const byLikes = (b1, b2) => b2.likes - b1.likes
+    const byLikes = (b1, b2) => b2.likes - b1.likes
+    const sortedBlogs = blogs.sort(byLikes)
 
     return (
         <div>
-            {blogs.map(blog => {
+            {sortedBlogs.map(blog => {
                 return(
                     <Blog
                         key={blog.id}
