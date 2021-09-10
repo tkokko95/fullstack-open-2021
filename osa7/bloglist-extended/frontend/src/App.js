@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-// eslint-disable-next-line no-unused-vars
-import { BrowserRouter as Router, Switch, Route, Link, useParams, useHistory } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import BlogList from './components/BlogList'
 import Notification from './components/Notification'
 import Togglable from './components/Togglable'
