@@ -7,6 +7,12 @@ const BlogList = ({ user }) => {
     const byLikes = (b1, b2) => b2.likes - b1.likes
     const sortedBlogs = blogs.sort(byLikes)
 
+    if(!sortedBlogs) {
+        return(
+            <h3>No blogs to show</h3>
+        )
+    }
+
     return (
         <div>
             {sortedBlogs.map(blog => {

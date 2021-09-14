@@ -24,7 +24,7 @@ const App = () => {
     useEffect(() => {
         dispatch(fetchBlogs())
         dispatch(getUsers())
-    }, [])
+    }, [dispatch])
 
 
     if (!user) {

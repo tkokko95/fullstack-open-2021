@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useRouteMatch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import { likeBlog } from '../reducers/blogsReducer'
+import { likeBlog, addComment } from '../reducers/blogsReducer'
 import { useDispatch } from 'react-redux'
 
 const BlogInfo = () => {
@@ -12,11 +12,10 @@ const BlogInfo = () => {
 
     const dispatch = useDispatch()
 
-    const blog = match ? blogs.find(blog => blog.id === match.params.id) : null
+    const blog = match ? blogs?.find(blog => blog?.id === match.params?.id) : null
 
-    const handleSubmit = event => {
-        event.preventDefault()
-        console.log(input)
+    const handleSubmit = async () => {
+        await dispatch(addComment(blog.id, input))
         setInput('')
     }
 
