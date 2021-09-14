@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { addBlog } from '../reducers/blogsReducer'
 import { useDispatch } from 'react-redux'
+import { Form, Button } from 'react-bootstrap'
 
 const NewBlog = () => {
     const [title, setTitle] = useState('')
@@ -19,35 +20,31 @@ const NewBlog = () => {
     }
 
     return (
-        <div>
-            <h2>create new</h2>
-            <form onSubmit={handleNewBlog}>
-                <div>
-                    author
-                    <input
+        <div className='blogform'>
+            <h2>Create new</h2>
+            <Form onSubmit={handleNewBlog}>
+                <Form.Group>
+                    <Form.Label>Author</Form.Label>
+                    <Form.Control
                         id='author'
                         value={author}
                         onChange={({ target }) => setAuthor(target.value)}
                     />
-                </div>
-                <div>
-                    title
-                    <input
+                    <Form.Label>Title </Form.Label>
+                    <Form.Control
                         id='title'
                         value={title}
                         onChange={({ target }) => setTitle(target.value)}
                     />
-                </div>
-                <div>
-                    url
-                    <input
+                    <Form.Label>Url</Form.Label>
+                    <Form.Control
                         id='url'
                         value={url}
                         onChange={({ target }) => setUrl(target.value)}
                     />
-                </div>
-                <button id="create" type="submit">create</button>
-            </form>
+                    <Button id="create" type="submit" variant='success'>create</Button>
+                </Form.Group>
+            </Form>
         </div>
     )
 }

@@ -14,7 +14,7 @@ const BlogList = ({ user }) => {
     }
 
     return (
-        <div>
+        <div className='bloglist'>
             {sortedBlogs.map(blog => {
                 return(
                     <Blog

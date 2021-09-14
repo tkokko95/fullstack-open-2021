@@ -22,14 +22,14 @@ const Blog = ({ blog, own }) => {
         <div style={blogStyle} className='blog'>
             <div>
                 <Link to={`/blogs/${blog.id}`}>
-                    <i>{blog.title}</i> by {blog.author}
+                    <i>{blog.title}</i> by {blog.author}&nbsp;
                 </Link>
                 <button onClick={() => setVisible(!visible)}>{label}</button>
             </div>
             {visible && (
                 <div>
                     <div>{blog.url}</div>
-                    <div>likes {blog.likes}
+                    <div>likes {blog.likes} &nbsp;
                         <button onClick={() => dispatch(likeBlog(blog))}>like</button>
                     </div>
                     <div>{blog.user.name}</div>

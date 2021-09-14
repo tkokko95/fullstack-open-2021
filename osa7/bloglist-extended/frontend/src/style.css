@@ -1,3 +1,18 @@
 .navbar {
-    background-color: rgb(207, 215, 226);
+    font-weight: 750;
+    word-spacing: 50px;
+    background-color: lightgray;
+    padding: 0px 0px 0px 0px;
+    max-height: 40px;
+    margin-bottom: 10px;
+    padding: 0px 10px 0px 10px;
+}
+
+.bloglist {
+    padding-bottom: 25px;
+}
+
+.blogdetails {
+    background-color:azure;
+    padding: 10px 10px 10px 10px;
 }

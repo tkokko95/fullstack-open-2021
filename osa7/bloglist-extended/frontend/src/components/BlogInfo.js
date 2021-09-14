@@ -3,6 +3,7 @@ import { useRouteMatch } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { likeBlog, addComment } from '../reducers/blogsReducer'
 import { useDispatch } from 'react-redux'
+import { Form, Button } from 'react-bootstrap'
 
 const BlogInfo = () => {
     const blogs = useSelector(state => state.blogs)
@@ -26,12 +27,14 @@ const BlogInfo = () => {
     }
 
     return (
-        <div className='commentPage'>
-            <h2>{blog.title} by {blog.author}</h2>
+        <div className='blogdetails'>
+            <h3>{blog.title} by {blog.author}</h3>
             <a href='{blog.url}'>{blog.url}</a>
             <h4>Added by: {blog.user.name}</h4>
+            <br />
             <h4>Likes: {blog.likes}</h4>
             <button onClick={() => dispatch(likeBlog(blog))}>Like</button>
+            <br /> <br />
             <h4>Comments</h4>
             <ul>
                 {blog.comments.map(comment => {
@@ -41,13 +44,14 @@ const BlogInfo = () => {
                 })}
             </ul>
 
-            <div className='commentForm'>
-                <h5>Post a comment</h5>
-                <form onSubmit={handleSubmit}>
-                    <input type='text' value={input} onChange={({ target }) => setInput(target.value)} />
-                    <button type='submit'>Submit</button>
-                </form>
-            </div>
+            <Form className='commentForm' onSubmit={handleSubmit}>
+                <Form.Group>
+                    <Form.Label>Post a comment</Form.Label>
+                    <Form.Control type='text' value={input} onChange={({ target }) => setInput(target.value)} as='textarea' rows={10}/>
+                    <br />
+                    <Button type='submit' variant='info'>Submit</Button>
+                </Form.Group>
+            </Form>
         </div>
     )
 }

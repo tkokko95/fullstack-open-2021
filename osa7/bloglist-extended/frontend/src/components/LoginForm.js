@@ -4,6 +4,7 @@ import { useState } from 'react'
 
 import { showNotification } from '../reducers/notificationReducer'
 import { login } from '../reducers/loginReducer'
+import { Form, Button } from 'react-bootstrap'
 
 
 const LoginForm = () => {
@@ -33,28 +34,27 @@ const LoginForm = () => {
 
     return (
         <div>
-            <h2>login to application</h2>
-            <form onSubmit={handleLogin}>
-                <div>
-                    username
-                    <input
+            <h2>Log in to application</h2>
+            <Form onSubmit={handleLogin}>
+                <Form.Group>
+                    <Form.Label>Username: </Form.Label>
+                    <Form.Control
                         id='username'
                         type='text'
                         value={username}
                         onChange={({ target }) => setUsername(target.value)}
                     />
-                </div>
-                <div>
-                    password
-                    <input
+                    <Form.Label>Password: </Form.Label>
+                    <Form.Control
                         id='password'
                         value={password}
                         type='password'
                         onChange={({ target }) => setPassword(target.value)}
                     />
-                </div>
-                <button id='login'>login</button>
-            </form>
+                    <Button id='login' type='submit' variant='primary'>Log in</Button>
+                </Form.Group>
+
+            </Form>
         </div>
     )
 

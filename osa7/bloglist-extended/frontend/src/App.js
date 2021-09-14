@@ -9,7 +9,7 @@ import LoginForm from './components/LoginForm'
 import UserList from './components/UserList'
 import UserInfo from './components/UserInfo'
 import BlogInfo from './components/BlogInfo'
-import Navbar from './components/Navbar'
+import NavigationBar from './components/Navbar'
 
 import { fetchBlogs } from './reducers/blogsReducer'
 import { getUsers } from './reducers/usersReducer'
@@ -29,7 +29,7 @@ const App = () => {
 
     if (!user) {
         return (
-            <div>
+            <div className='container'>
                 <Notification />
                 <LoginForm />
             </div>
@@ -37,14 +37,14 @@ const App = () => {
     }
 
     return (
-        <div>
+        <div className='container'>
             <Notification />
             <p>
                 {user.name} logged in
             </p>
 
             <Router>
-                <Navbar />
+                <NavigationBar />
                 <Switch>
                     <Route exact path='/users'>
                         <UserList />
@@ -56,10 +56,10 @@ const App = () => {
                         <BlogInfo />
                     </Route>
                     <Route exact path='/blogs'>
-                        <Togglable buttonLabel='create new blog' ref={blogFormRef}>
+                        <BlogList user={user} />
+                        <Togglable buttonLabel='Create new blog' ref={blogFormRef}>
                             <NewBlog />
                         </Togglable>
-                        <BlogList user={user} />
                     </Route>
                 </Switch>
             </Router>

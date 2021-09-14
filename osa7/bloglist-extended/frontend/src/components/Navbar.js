@@ -2,8 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { logout } from '../reducers/loginReducer'
+import { Button } from 'react-bootstrap'
 
-const Navbar = () => {
+const NavigationBar = () => {
 
     const dispatch = useDispatch()
 
@@ -14,10 +15,10 @@ const Navbar = () => {
 
     return (
         <div className='navbar'>
-            <p><Link to='/blogs'>Blogs</Link> <Link to='/users'>Users</Link> <button onClick={handleLogout}>Log out</button></p>
+            <p><Link to='/blogs'>Blogs</Link> <Link to='/users'>Users</Link> <Button onClick={handleLogout} variant='danger'>Log out</Button></p>
 
         </div>
     )
 }
 
-export default Navbar
+export default NavigationBar
