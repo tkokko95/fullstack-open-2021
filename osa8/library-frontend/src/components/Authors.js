@@ -57,7 +57,13 @@ const Authors = ({ authors, show }) => {
       </table>
       <h4>Set birthyear</h4>
       <form onSubmit={handleSubmit}>
-            Name: <input value={name} type='text' onChange={({ target }) => setName(target.value)} />
+            <select value={name} onChange={({ target }) => setName(target.value)}>
+              {authors.map(author => {
+                return(
+                <option value={author.name} key={author.name}>{author.name}</option>
+                )
+              })}
+            </select>
             Year: <input value={birthyear} type='number' onChange={({ target }) => setBirtyear(target.value)} />
             <button type='submit'>Submit</button>
       </form>
