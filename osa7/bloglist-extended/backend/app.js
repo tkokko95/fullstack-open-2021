@@ -16,6 +16,7 @@ const mongoose = require('mongoose')
 
 const app = express()
 app.use(cors())
+app.use(middleware.errorHandler)
 
 mongoose.set('useCreateIndex', true)
 
@@ -41,6 +42,5 @@ if (process.env.NODE_ENV === 'test') {
     app.use('/api/testing', testingRouter)
   }
 
-app.use(middleware.errorHandler)
 
 module.exports = app
