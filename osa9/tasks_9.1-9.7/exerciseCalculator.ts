@@ -8,7 +8,44 @@ interface exerciseData {
     average: number
 }
 
-const calculateExercises = (exercises: Array<number>, target: number): exerciseData=> {
+interface exerciseInput {
+    dailyExercises: Array<number>,
+    target: number
+}
+
+const parseArguments = (args: Array<string>): exerciseInput => {
+    if (args.length < 4) {
+        throw new Error('Must have at least two arguments')
+    }
+
+    const target = args[2]
+    const exercises = args.slice(3)
+    const exercisesNum: Array<number> = []
+    exercises.forEach(exercise => {
+        if (!isNaN(Number(exercise))) {
+            exercisesNum.push(Number(exercise))
+        } else {
+            throw new Error('All exercise hours must be numbers')
+        }
+    })
+
+    const targetNum = Number(target)
+
+    if (!isNaN(targetNum)) {
+        return {
+            dailyExercises: exercisesNum,
+            target: targetNum
+        }
+    } else {
+        throw new Error('Target must be a number')
+    }
+
+}
+
+const calculateExercises = (exerciseInput: exerciseInput): exerciseData=> {
+    const exercises = exerciseInput.dailyExercises
+    const target = exerciseInput.target
+
 
     const periodLength = exercises.length
     const trainingDays = exercises.filter(exerciseTime => exerciseTime != 0).length
@@ -41,4 +78,10 @@ const calculateExercises = (exercises: Array<number>, target: number): exerciseD
 
 }
 
-console.log(calculateExercises([3, 0, 2, 4.5, 0, 3, 1], 2))
+try {
+    const exerciseObject = parseArguments(process.argv)
+    console.log(exerciseObject)
+} catch (err) {
+    const errMessage = err instanceof Error ? err.message : 'Something went wrong'
+    console.log(errMessage)
+}

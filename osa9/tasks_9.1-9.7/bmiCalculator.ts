@@ -1,6 +1,26 @@
-const calculateBmi = (height: number, mass: number): string => {
-    const heightInMeters = height / 100
-    const bmi = mass / (heightInMeters*heightInMeters)
+interface heightAndMass {
+    height: number,
+    mass: number
+}
+
+const verifyArguments = (args:Array<string>): heightAndMass => {
+    if (args.length != 4) {
+        throw new Error('Incorrect amount of arguments, expected 2')
+    }
+
+    if (!isNaN(Number(args[2])) && !isNaN(Number(args[3]))) {
+        return {
+            height: Number(args[2]),
+            mass: Number(args[3])
+        }
+    } else {
+        throw new Error('All arguments must be numbers')
+    }
+}
+
+const calculateBmi = (heightAndMass: heightAndMass): string => {
+
+    const bmi = heightAndMass.mass / ((heightAndMass.height / 100) * (heightAndMass.height / 100))
 
     switch (true) {
         case (bmi < 16.0):
@@ -24,4 +44,10 @@ const calculateBmi = (height: number, mass: number): string => {
     }
 }
 
-console.log(calculateBmi(180, 74))
+try {
+    const data = verifyArguments(process.argv)
+    console.log(calculateBmi(data))
+} catch (error: unknown) {
+    const errMessage = error instanceof Error ? error.message : 'Something went wrong'
+    console.log(errMessage)
+}
